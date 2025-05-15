@@ -53,6 +53,37 @@
       <div class="swiper-button-next html-next"></div>
     </div>
 
+    <pre><code>
+
+      const swiper = new Swiper(".swiper", {
+        loop: true,
+
+        // If we need pagination
+        pagination: {
+          el: ".swiper-pagination",
+        },
+
+        // Navigation arrows
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+
+        // And if we need scrollbar
+        scrollbar: {
+          el: ".swiper-scrollbar",
+        },
+      });
+      // Handle button clicks
+      document.querySelectorAll(".go-to-slide").forEach((button) => {
+        button.addEventListener("click", () => {
+          const index = parseInt(button.dataset.slide, 0);
+         swiper.slideTo(index); // or mySwiper.slideToLoop(index) if using loop mode
+        });
+      });
+  
+</code></pre>
+
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 
     <script>
@@ -79,7 +110,7 @@
       document.querySelectorAll(".go-to-slide").forEach((button) => {
         button.addEventListener("click", () => {
           const index = parseInt(button.dataset.slide, 0);
-         swiper.slideTo(index); // or mySwiper.slideToLoop(index) if using loop mode
+          swiper.slideTo(index); // or mySwiper.slideToLoop(index) if using loop mode
         });
       });
     </script>
