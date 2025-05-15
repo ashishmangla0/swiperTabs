@@ -78,7 +78,7 @@
       // Handle button clicks
       document.querySelectorAll(".go-to-slide").forEach((button) => {
         button.addEventListener("click", () => {
-          const index = parseInt(button.dataset.slide, 10);
+          const index = parseInt(button.dataset.slide, 0);
          swiper.slideTo(index); // or mySwiper.slideToLoop(index) if using loop mode
         });
       });
