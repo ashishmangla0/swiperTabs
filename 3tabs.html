@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
+
+   <style>
+  .tab-content {
+    display: none;
+  }
+
+  .tab-content.active {
+    display: block;
+  }
+
+  .swiper {
+    width: 100%;
+    height: 200px;
+  }
+
+  .swiper-slide {
+    background: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+</style>
+</head>
+<body>
+    <!-- Tabs -->
+<div class="tabs">
+  <button data-tab="html">HTML</button>
+  <button data-tab="css">CSS</button>
+  <button data-tab="react">React</button>
+</div>
+
+<!-- Tab Contents -->
+<div class="tab-content" id="html">
+  <div class="swiper html-swiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">HTML Slide 1</div>
+      <div class="swiper-slide">HTML Slide 2</div>
+    </div>
+    <div class="swiper-pagination"></div>
+     <div class="swiper-button-prev html-prev"></div>
+    <div class="swiper-button-next html-next"></div>
+  </div>
+</div>
+
+<div class="tab-content" id="css">
+  <div class="swiper css-swiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">CSS Slide 1</div>
+      <div class="swiper-slide">CSS Slide 2</div>
+      
+    </div>
+    <div class="swiper-pagination"></div>
+     <div class="swiper-button-prev css-prev"></div>
+    <div class="swiper-button-next css-next"></div>
+  </div>
+</div>
+
+<div class="tab-content" id="react">
+  <div class="swiper react-swiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">React Slide 1</div>
+      <div class="swiper-slide">React Slide 2</div>
+       <div class="swiper-button-prev react-prev"></div>
+    <div class="swiper-button-next react-next"></div>
+    </div>
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-prev react-prev"></div>
+    <div class="swiper-button-next react-next"></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+<script>
+  const tabs = document.querySelectorAll('.tabs button');
+  const contents = document.querySelectorAll('.tab-content');
+
+  const swiperInstances = {
+    html: null,
+    css: null,
+    react: null,
+  };
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.tab;
+
+      // Show the target content, hide others
+      contents.forEach(content => {
+        content.classList.toggle('active', content.id === target);
+      });
+
+      // Initialize Swiper only once per tab
+      if (!swiperInstances[target]) {
+        swiperInstances[target] = new Swiper(`.${target}-swiper`, {
+          loop: true,
+          pagination: {
+            el: `#${target} .swiper-pagination`,
+          },
+           navigation: {
+            nextEl: `.${target}-next`,
+            prevEl: `.${target}-prev`,
+          },
+        });
+      }
+    });
+  });
+
+  // Show first tab by default
+  tabs[0].click();
+</script>
+    
+</body>
+</html>
