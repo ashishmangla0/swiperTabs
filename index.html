@@ -29,12 +29,20 @@
         align-items: center;
         justify-content: center;
       }
+      .go-to-slide{
+        background-color: #000AAC;
+        color: #ffffff;
+      }
+      .go-to-slide.active{
+        background: #ffffff;
+        color:#000AAC;
+      }
     </style>
   </head>
   <body>
     <!-- Tabs -->
     <div class="tabs">
-      <button class="go-to-slide" data-slide="0">HTML</button>
+      <button class="go-to-slide active" data-slide="0">HTML</button>
       <button class="go-to-slide" data-slide="2">CSS</button>
       <button class="go-to-slide" data-slide="4">React</button>
     </div>
@@ -53,9 +61,19 @@
       <div class="swiper-button-next html-next"></div>
     </div>
 
-    <pre><code>
 
-      const swiper = new Swiper(".swiper", {
+
+    <pre><code>
+      // class for all the buttons
+      .go-to-slide
+
+      // this si button attribute
+      data-slide
+
+      // class for show active
+      active
+
+     const swiper = new Swiper(".swiper", {
         loop: true,
 
         // If we need pagination
@@ -78,9 +96,16 @@
       document.querySelectorAll(".go-to-slide").forEach((button) => {
         button.addEventListener("click", () => {
           const index = parseInt(button.dataset.slide, 0);
-         swiper.slideTo(index); // or mySwiper.slideToLoop(index) if using loop mode
+          swiper.slideTo(index); // or mySwiper.slideToLoop(index) if using loop mode
         });
       });
+
+        document.querySelectorAll(".go-to-slide").forEach((button) => {
+            button.addEventListener('click', () => {
+              document.querySelectorAll(".go-to-slide").forEach(btn => btn.classList.remove('active'));
+               button.classList.add('active');
+            })
+        })
   
 </code></pre>
 
@@ -113,6 +138,14 @@
           swiper.slideTo(index); // or mySwiper.slideToLoop(index) if using loop mode
         });
       });
-    </script>
+
+        document.querySelectorAll(".go-to-slide").forEach((button) => {
+            button.addEventListener('click', () => {
+              document.querySelectorAll(".go-to-slide").forEach(btn => btn.classList.remove('active'));
+               button.classList.add('active');
+            })
+        })
+   
+   </script>
   </body>
 </html>
